@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>웹 우노 · Web UNO</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo"><span>UNO</span></div>
+        <div>
+          <div>웹 우노</div>
+          <span class="name" style="font-size:11px;color:var(--muted);font-weight:500">Moon Kim</span>
+        </div>
+      </div>
+      <div class="status-pills">
+        <span class="pill" id="turnPill">턴: <strong id="turnName">—</strong></span>
+        <span class="pill">방향: <strong id="dirLabel">시계 →</strong></span>
+        <span class="pill">색: <strong id="colorLabel"><span class="color-dot wild"></span>—</strong></span>
+        <span class="pill">덱: <strong id="deckCount">0</strong></span>
+      </div>
+      <button type="button" class="btn ghost" id="btnNew">새 게임</button>
+    </header>
+
+    <main class="table">
+      <div class="seat top" id="seat1" data-player="1">
+        <div class="seat-label"><span class="name">CPU 1</span><span class="badge-count" id="count1">0</span></div>
+        <div class="cpu-hand" id="hand1"></div>
+      </div>
+
+      <div class="seat left" id="seat3" data-player="3">
+        <div class="seat-label"><span class="name">CPU 3</span><span class="badge-count" id="count3">0</span></div>
+        <div class="cpu-hand" id="hand3"></div>
+      </div>
+
+      <div class="center">
+        <div class="piles">
+          <div class="pile">
+            <div class="deck-stack" id="deck" title="카드 뽑기">
+              <div class="card-back"></div>
+              <div class="card-back"></div>
+              <div class="card-back"></div>
+            </div>
+            <div class="pile-label">덱</div>
+          </div>
+          <div class="direction" id="dirArrow" aria-hidden="true">↻</div>
+          <div class="pile">
+            <div class="discard-area" id="discard"></div>
+            <div class="pile-label">버린 카드</div>
+          </div>
+        </div>
+        <div class="msg" id="msg">게임을 시작하세요</div>
+      </div>
+
+      <div class="seat right" id="seat2" data-player="2">
+        <div class="seat-label"><span class="name">CPU 2</span><span class="badge-count" id="count2">0</span></div>
+        <div class="cpu-hand" id="hand2"></div>
+      </div>
+
+      <div class="seat you" id="seat0" data-player="0">
+        <div class="seat-label"><span class="name">나 (Moon)</span><span class="badge-count" id="count0">0</span></div>
+        <div class="hand-wrap">
+          <div class="hand" id="hand0"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="overlay" id="colorOverlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h2>색 선택</h2>
+      <p>와일드 카드의 색을 고르세요</p>
+      <div class="color-grid">
+        <button type="button" class="color-btn red" data-color="red">빨강</button>
+        <button type="button" class="color-btn yellow" data-color="yellow">노랑</button>
+        <button type="button" class="color-btn green" data-color="green">초록</button>
+        <button type="button" class="color-btn blue" data-color="blue">파랑</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="endOverlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h2 id="endTitle">승리!</h2>
+      <p id="endText">손을 비웠습니다.</p>
+      <div class="actions">
+        <button type="button" class="btn" id="btnPlayAgain">다시 하기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
